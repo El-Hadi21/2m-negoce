@@ -3,159 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2M Negoce | Grossiste en Viande</title>
+    <title>2M Negoce | Excellence & Distribution</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CONFIGURATION GLOBALE & COULEURS --- */
         :root {
-            --primary: #a71d2a; /* Rouge Viande */
-            --dark: #1a1a1a;
-            --light: #f4f4f4;
-            --white: #ffffff;
+            /* Palette Noir & Or (Luxe) */
+            --gold-main: #d4af37;       /* Or classique */
+            --gold-light: #f3e5ab;      /* Or clair pour les reflets */
+            --black-deep: #0b0b0b;      /* Noir profond fond de page */
+            --black-card: #141414;      /* Noir légèrement plus clair pour les blocs */
+            --text-white: #f5f5f5;      /* Blanc cassé pour lecture confortable */
+            --text-muted: #a0a0a0;      /* Gris pour texte secondaire */
+            
+            /* Dimensions */
+            --nav-height: 80px;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        body { 
+            background-color: var(--black-deep); 
+            color: var(--text-white); 
+            font-family: 'Lato', sans-serif; 
+            line-height: 1.8; 
+            overflow-x: hidden;
+        }
 
-        /* Navigation */
+        h1, h2, h3, .nav-links a, .btn-main {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- NAVIGATION --- */
         nav {
-            background: var(--white);
-            padding: 1rem 5%;
+            background: rgba(11, 11, 11, 0.95); /* Noir semi-transparent */
+            backdrop-filter: blur(10px);
+            height: var(--nav-height);
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Ligne dorée subtile */
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
-        .nav-links a { text-decoration: none; color: var(--dark); margin-left: 20px; font-weight: 500; }
-        .btn-contact { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 4px; transition: 0.3s; }
-        .btn-contact:hover { background: #8a1622; }
 
-        /* Hero Header */
+        /* ZONE LOGO */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-img {
+            /* Ajustez la hauteur max selon votre logo */
+            max-height: 50px; 
+            width: auto;
+            /* Filtre pour rendre un logo noir -> blanc si besoin, sinon retirez la ligne suivante */
+            /* filter: brightness(0) invert(1); */
+        }
+
+        /* Placeholder texte si pas d'image */
+        .logo-text-fallback {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-main);
+            letter-spacing: 2px;
+            border: 2px solid var(--gold-main);
+            padding: 5px 15px;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-white); 
+            font-size: 0.85rem; 
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* Effet hover lien souligné or */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold-main);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold-main); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Bouton Contact Navbar */
+        .btn-contact { 
+            background: transparent; 
+            color: var(--gold-main) !important; 
+            border: 1px solid var(--gold-main);
+            padding: 10px 25px; 
+            transition: 0.4s;
+        }
+        .btn-contact:hover { 
+            background: var(--gold-main); 
+            color: var(--black-deep) !important; 
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        .btn-contact::after { display: none; } /* Pas de soulignement sur le bouton */
+
+        /* --- HERO HEADER --- */
         header {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            height: 100vh;
+            /* Overlay sombre plus prononcé pour la lisibilité sur image */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Effet parallaxe luxe */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-            padding-top: 60px;
+            padding-top: var(--nav-height);
         }
-        header h1 { font-size: 4rem; margin-bottom: 1rem; text-transform: uppercase; }
-        header p { font-size: 1.5rem; margin-bottom: 2rem; max-width: 700px; font-weight: 300; }
-        .btn-main { background: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 4px; font-size: 1.2rem; font-weight: bold; }
 
-        /* Sections */
-        section { padding: 5rem 10%; }
-        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--dark); }
-        .section-title span { color: var(--primary); }
+        header h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--text-white);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        header h1 span { color: var(--gold-main); } /* Accent doré */
 
-        /* Produits */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card-content { padding: 2rem; }
-        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block; text-align: center; }
-        .card h3 { text-align: center; margin-bottom: 1rem; font-size: 1.5rem; }
+        header p { 
+            font-size: 1.2rem; 
+            margin-bottom: 3rem; 
+            max-width: 650px; 
+            color: var(--text-muted);
+            margin-left: auto; margin-right: auto;
+            font-weight: 300;
+        }
 
-        /* Contact */
-        .contact-section { background: var(--dark); color: white; text-align: center; }
-        .contact-info { font-size: 1.2rem; margin-top: 2rem; }
-        .contact-info p { margin: 10px 0; }
-        .contact-info i { color: var(--primary); margin-right: 10px; }
+        .btn-main { 
+            background: var(--gold-main); 
+            color: var(--black-deep); 
+            padding: 18px 45px; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gold-main);
+        }
 
-        /* Footer */
-        footer { background: #111; color: #888; text-align: center; padding: 2rem; }
+        .btn-main:hover { 
+            background: transparent;
+            color: var(--gold-main);
+            transform: translateY(-3px);
+        }
 
-        @media (max-width: 768px) {
+        /* --- SECTIONS GLOBALES --- */
+        section { padding: 6rem 10%; }
+        
+        .section-title { 
+            text-align: center; 
+            margin-bottom: 5rem; 
+            font-size: 2.2rem; 
+            color: var(--text-white);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        /* Petite ligne dorée sous les titres */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-main);
+            margin: 20px auto 0;
+        }
+
+        .section-title span { color: var(--gold-main); }
+
+        /* --- PRODUITS (GRID LUXE) --- */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 3rem; 
+        }
+
+        .card { 
+            background: var(--black-card); 
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Bordure très subtile */
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet Bordure Dorée au Hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--gold-main);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+
+        .card i { 
+            font-size: 2.5rem; 
+            color: var(--gold-main); 
+            margin-bottom: 1.5rem; 
+            opacity: 0.9;
+        }
+
+        .card h3 { 
+            color: var(--text-white); 
+            margin-bottom: 1rem; 
+            font-size: 1.3rem; 
+        }
+        
+        .card p { 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            font-weight: 300;
+        }
+
+        /* --- SERVICES (Fond Noir Alternatif) --- */
+        /* On garde le fond noir mais on joue sur les bordures */
+        .services-section { background-color: #0e0e0e; }
+
+        .service-card-minimal {
+            background: transparent;
+            border: 1px solid var(--gold-main);
+            padding: 2.5rem;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .service-card-minimal:hover {
+            background: var(--gold-main);
+        }
+        
+        .service-card-minimal:hover h3, 
+        .service-card-minimal:hover i { color: var(--black-deep); }
+
+        /* --- CONTACT --- */
+        .contact-section { 
+            background: linear-gradient(45deg, #050505, #151515);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; 
+        }
+        
+        .contact-info { 
+            display: flex; 
+            justify-content: center; 
+            gap: 3rem; 
+            flex-wrap: wrap;
+            margin-top: 3rem; 
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i { 
+            font-size: 1.5rem; 
+            color: var(--gold-main); 
+            margin-bottom: 5px;
+        }
+        
+        .contact-item span { color: var(--text-white); font-weight: 300; }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: #000; 
+            color: #666; 
+            text-align: center; 
+            padding: 3rem 0; 
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border-top: 1px solid #222;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 968px) {
             header h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 1rem; }
-            .nav-links { display: none; } /* Menu simplifié mobile */
+            .nav-links { display: none; } /* Pour l'instant caché sur mobile, ou menu burger à prévoir */
+            
+            nav { justify-content: center; } /* Logo centré sur mobile */
+            .logo-container { margin: 0; }
+            
+            .contact-info { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">2M NEGOCE</div>
+        <div class="logo-container">
+            <div class="logo-text-fallback">2M NEGOCE</div> 
+        </div>
+
         <div class="nav-links">
-            <a href="#produits">Nos Viandes</a>
-            <a href="#services">Services</a>
-            <a href="#contact" class="btn-contact">Contact</a>
+            <a href="#produits">Nos Collections</a>
+            <a href="#services">L'Expertise</a>
+            <a href="#contact" class="btn-contact">Nous Contacter</a>
         </div>
     </nav>
 
     <header>
         <div>
-            <h1>La Qualité Avant Tout</h1>
-            <p>Importation et distribution de viandes de premier choix pour les professionnels.</p>
-            <a href="#contact" class="btn-main">Demander un Tarif</a>
+            <h1>L'Excellence <br><span>Sur Mesure</span></h1>
+            <p>Le partenaire privilégié des tables d'exception et des boucheries de prestige. Importation et négoce de viandes sélectionnées.</p>
+            <a href="#contact" class="btn-main">OBTENIR UN DEVIS PRIVÉ</a>
         </div>
     </header>
 
     <section id="produits">
-        <h2 class="section-title">Nos <span>Produits</span></h2>
+        <h2 class="section-title">Nos <span>Sélections</span></h2>
         <div class="grid">
             <div class="card">
-                <div class="card-content">
-                    <i class="fas fa-drumstick-bite"></i>
-                    <h3>Volailles</h3>
-                    <p>Poulet, dinde et canard. Une sélection rigoureuse pour garantir fraîcheur et saveur à vos clients.</p>
-                </div>
+                <i class="fas fa-drumstick-bite"></i>
+                <h3>Volailles Fermières</h3>
+                <p>Une sélection rigoureuse de volailles élevées en plein air. Chair tendre et goût authentique garanti pour vos clients exigeants.</p>
             </div>
             <div class="card">
-                <div class="card-content">
-                    <i class="fas fa-bacon"></i>
-                    <h3>Bœuf & Veau</h3>
-                    <p>Des pièces nobles sélectionnées auprès des meilleurs éleveurs. Traçabilité garantie.</p>
-                </div>
+                <i class="fas fa-bacon"></i>
+                <h3>Bœuf & Veau</h3>
+                <p>Races nobles et traçabilité totale. Des découpes de précision adaptées à la haute gastronomie et au commerce de détail.</p>
             </div>
             <div class="card">
-                <div class="card-content">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Agneau</h3>
-                    <p>Viande tendre et savoureuse, disponible en carcasse ou découpe spécifique selon vos besoins.</p>
-                </div>
+                <i class="fas fa-utensils"></i>
+                <h3>Agneau d'Exception</h3>
+                <p>Finesse et saveur. Disponible en carcasses entières ou découpes spécifiques selon vos besoins logistiques.</p>
             </div>
         </div>
     </section>
 
-    <section id="services" style="background-color: white;">
-        <h2 class="section-title">Pourquoi <span>Nous ?</span></h2>
+    <section id="services" class="services-section">
+        <h2 class="section-title">Notre <span>Engagement</span></h2>
         <div class="grid">
-            <div class="card" style="text-align: center; padding: 20px; box-shadow: none;">
-                <i class="fas fa-check-circle"></i>
+            <div class="service-card-minimal">
+                <i class="fas fa-certificate"></i>
                 <h3>Qualité Certifiée</h3>
             </div>
-            <div class="card" style="text-align: center; padding: 20px; box-shadow: none;">
+            <div class="service-card-minimal">
                 <i class="fas fa-truck-fast"></i>
-                <h3>Livraison Rapide</h3>
+                <h3>Logistique Express</h3>
             </div>
-            <div class="card" style="text-align: center; padding: 20px; box-shadow: none;">
+            <div class="service-card-minimal">
                 <i class="fas fa-hand-holding-dollar"></i>
-                <h3>Prix Compétitifs</h3>
+                <h3>Tarifs Négociés</h3>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <h2 class="section-title" style="color:white;">Contactez <span>2M Negoce</span></h2>
-        <p>Prêt à passer commande ? Appelez-nous ou envoyez un email.</p>
+        <h2 class="section-title">Espace <span>Pro</span></h2>
+        <p style="color: var(--text-muted);">Notre conciergerie commerciale est à votre écoute.</p>
+        
         <div class="contact-info">
-            <p><i class="fas fa-phone"></i> 06 XX XX XX XX</p>
-            <p><i class="fas fa-envelope"></i> contact@2mnegoce.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> Nice, France</p>
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>06 XX XX XX XX</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>direction@2mnegoce.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Paris, île-de-France</span>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 2M Negoce. Site réalisé par Ilias El Hadi.</p>
+        <p>&copy; 2026 2M NEGOCE. TOUS DROITS RÉSERVÉS.</p>
     </footer>
 
 </body>
