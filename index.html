@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2M Negoce | Matériaux Électriques & Construction</title>
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CONFIGURATION GLOBALE & COULEURS --- */
+        /* --- CONFIGURATION GLOBALE & NOUVELLE PALETTE BTP --- */
         :root {
-            /* Palette Noir & Or (Luxe) */
-            --gold-main: #d4af37;       /* Or classique */
-            --gold-light: #f3e5ab;      /* Or clair pour les reflets */
-            --black-deep: #0b0b0b;      /* Noir profond fond de page */
-            --black-card: #141414;      /* Noir légèrement plus clair pour les blocs */
-            --text-white: #f5f5f5;      /* Blanc cassé pour lecture confortable */
-            --text-muted: #a0a0a0;      /* Gris pour texte secondaire */
+            /* Palette Noir & Bleu Électrique (Professionnel BTP) */
+            --blue-main: #007bff;       /* Bleu électrique standard */
+            --blue-accent: #0056b3;     /* Bleu plus foncé au survol */
+            --black-deep: #080808;      /* Noir très profond fond de page */
+            --black-card: #121212;      /* Noir technique pour les blocs */
+            --text-white: #ffffff;      /* Blanc pur pour contraste maximal */
+            --text-muted: #aab2bd;      /* Gris bleuté technique */
             
             /* Dimensions */
             --nav-height: 80px;
@@ -26,10 +26,12 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body { 
             background-color: var(--black-deep); 
             color: var(--text-white); 
-            font-family: 'Lato', sans-serif; 
+            font-family: 'Roboto', sans-serif; /* Changement pour une fonte plus technique */
             line-height: 1.8; 
             overflow-x: hidden;
         }
@@ -37,24 +39,23 @@
         h1, h2, h3, .nav-links a, .btn-main {
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
         }
 
         /* --- NAVIGATION --- */
         nav {
-            background: rgba(11, 11, 11, 0.95); /* Noir semi-transparent */
-            backdrop-filter: blur(10px);
+            background: rgba(8, 8, 8, 0.98); /* Noir presque opaque */
             height: var(--nav-height);
             padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Ligne dorée subtile */
+            border-bottom: 2px solid var(--blue-main); /* Ligne bleue plus marquée */
             position: fixed; 
             width: 100%; 
             top: 0; 
             z-index: 1000;
-            transition: all 0.3s ease;
         }
 
         /* ZONE LOGO */
@@ -64,22 +65,18 @@
             height: 100%;
         }
 
-        .logo-img {
-            /* Ajustez la hauteur max selon votre logo */
-            max-height: 50px; 
-            width: auto;
-            /* Filtre pour rendre un logo noir -> blanc si besoin, sinon retirez la ligne suivante */
-            /* filter: brightness(0) invert(1); */
-        }
-
-        /* Placeholder texte si pas d'image */
         .logo-text-fallback {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gold-main);
-            letter-spacing: 2px;
-            border: 2px solid var(--gold-main);
-            padding: 5px 15px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            /* Style plus industriel */
+            background: linear-gradient(45deg, var(--blue-main), var(--blue-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 3px solid var(--blue-main);
+            padding: 5px 20px;
+            transform: skew(-10deg); /* Effet dynamique */
         }
 
         .nav-links { display: flex; align-items: center; gap: 40px; }
@@ -87,241 +84,306 @@
         .nav-links a { 
             text-decoration: none; 
             color: var(--text-white); 
-            font-size: 0.85rem; 
+            font-size: 0.9rem; 
             font-weight: 600;
             transition: 0.3s;
             position: relative;
         }
 
-        /* Effet hover lien souligné or */
+        /* Effet hover lien souligné bleu */
         .nav-links a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px;
             bottom: -5px;
             left: 0;
-            background-color: var(--gold-main);
-            transition: width 0.3s;
+            background-color: var(--blue-main);
+            transition: width 0.3s ease-in-out;
         }
-        .nav-links a:hover { color: var(--gold-main); }
+        .nav-links a:hover { color: var(--blue-main); }
         .nav-links a:hover::after { width: 100%; }
 
         /* Bouton Contact Navbar */
         .btn-contact { 
-            background: transparent; 
-            color: var(--gold-main) !important; 
-            border: 1px solid var(--gold-main);
-            padding: 10px 25px; 
-            transition: 0.4s;
+            background: var(--blue-main); 
+            color: var(--text-white) !important; 
+            border: 2px solid var(--blue-main);
+            padding: 12px 30px; 
+            transition: 0.3s;
+            font-weight: 700;
         }
         .btn-contact:hover { 
-            background: var(--gold-main); 
-            color: var(--black-deep) !important; 
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            background: transparent; 
+            color: var(--blue-main) !important;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
         }
-        .btn-contact::after { display: none; } /* Pas de soulignement sur le bouton */
+        .btn-contact::after { display: none; }
 
-        /* --- HERO HEADER --- */
+        /* --- HERO HEADER (Changement radical d'image) --- */
         header {
             height: 100vh;
-            /* Overlay sombre plus prononcé pour la lisibilité sur image */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            /* Nouvelle image : Chantier/Électricité avec tons bleus */
+            background: linear-gradient(to right, rgba(8,8,8,0.9), rgba(8,8,8,0.6)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Effet parallaxe luxe */
+            background-attachment: fixed;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            padding: 0 10%; /* Alignement à gauche */
             padding-top: var(--nav-height);
         }
 
+        header div { max-width: 800px; text-align: left; }
+
         header h1 { 
-            font-size: 3.5rem; 
+            font-size: 4rem; 
             margin-bottom: 1.5rem; 
             color: var(--text-white);
-            font-weight: 700;
-            line-height: 1.2;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
         }
         
-        header h1 span { color: var(--gold-main); } /* Accent doré */
+        header h1 span { 
+            color: var(--blue-main);
+            display: block;
+            font-size: 4.5rem;
+        }
 
         header p { 
-            font-size: 1.2rem; 
+            font-size: 1.3rem; 
             margin-bottom: 3rem; 
-            max-width: 650px; 
             color: var(--text-muted);
-            margin-left: auto; margin-right: auto;
-            font-weight: 300;
+            font-weight: 400;
+            border-left: 4px solid var(--blue-main);
+            padding-left: 20px;
         }
 
         .btn-main { 
-            background: var(--gold-main); 
-            color: var(--black-deep); 
-            padding: 18px 45px; 
+            background: var(--blue-main); 
+            color: var(--text-white); 
+            padding: 20px 50px; 
             text-decoration: none; 
-            font-size: 0.9rem; 
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 1rem; 
+            font-weight: 800;
             transition: all 0.3s ease;
-            border: 1px solid var(--gold-main);
+            border: 3px solid var(--blue-main);
+            display: inline-block;
         }
 
         .btn-main:hover { 
             background: transparent;
-            color: var(--gold-main);
-            transform: translateY(-3px);
+            color: var(--blue-main);
+            box-shadow: 0 10px 30px -10px rgba(0, 123, 255, 0.8);
+            transform: translateY(-5px);
         }
 
         /* --- SECTIONS GLOBALES --- */
-        section { padding: 6rem 10%; }
+        section { padding: 8rem 10%; }
         
         .section-title { 
-            text-align: center; 
+            text-align: left; 
             margin-bottom: 5rem; 
-            font-size: 2.2rem; 
+            font-size: 3rem; 
             color: var(--text-white);
             position: relative;
-            display: inline-block;
-            width: 100%;
+            font-weight: 900;
         }
         
-        /* Petite ligne dorée sous les titres */
+        /* Ligne bleue technique sous les titres */
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--gold-main);
-            margin: 20px auto 0;
+            width: 100px;
+            height: 6px;
+            background: var(--blue-main);
+            margin: 20px 0 0;
         }
 
-        .section-title span { color: var(--gold-main); }
+        .section-title span { color: var(--blue-main); }
 
-        /* --- PRODUITS (GRID LUXE) --- */
+        /* --- PRODUITS (GRID TECHNIQUE) --- */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 3rem; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 2.5rem; 
         }
 
         .card { 
             background: var(--black-card); 
-            border: 1px solid rgba(255, 255, 255, 0.05); /* Bordure très subtile */
-            padding: 3rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
+            border: 2px solid rgba(0, 123, 255, 0.1); /* Bordure bleue subtile */
+            padding: 3.5rem 2.5rem;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
-        /* Effet Bordure Dorée au Hover */
+        /* Effet Remplissage Bleu au Hover */
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--gold-main);
-            transform: scaleX(0);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--blue-main);
+            transform: scaleY(0);
+            transform-origin: bottom;
             transition: transform 0.4s ease;
+            z-index: -1;
+            opacity: 0.1;
         }
 
         .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-15px); 
+            border-color: var(--blue-main);
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.2);
         }
 
-        .card:hover::before { transform: scaleX(1); }
+        .card:hover::before { transform: scaleY(1); }
 
         .card i { 
-            font-size: 2.5rem; 
-            color: var(--gold-main); 
-            margin-bottom: 1.5rem; 
-            opacity: 0.9;
+            font-size: 3rem; 
+            color: var(--blue-main); 
+            margin-bottom: 2rem; 
+            display: inline-block;
+            background: rgba(0, 123, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            transition: 0.4s;
+        }
+        
+        .card:hover i {
+            background: var(--blue-main);
+            color: var(--text-white);
+            transform: rotateY(360deg);
         }
 
         .card h3 { 
             color: var(--text-white); 
             margin-bottom: 1rem; 
-            font-size: 1.3rem; 
+            font-size: 1.5rem; 
         }
         
         .card p { 
             color: var(--text-muted); 
-            font-size: 0.95rem; 
-            font-weight: 300;
+            font-size: 1rem; 
         }
 
-        /* --- SERVICES (Fond Noir Alternatif) --- */
-        /* On garde le fond noir mais on joue sur les bordures */
-        .services-section { background-color: #0e0e0e; }
+        /* --- SERVICES (Style Industriel) --- */
+        .services-section { 
+            background-color: #0c0c0c;
+            position: relative;
+            /* Motif de fond technique subtil */
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 123, 255, 0.15) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
 
         .service-card-minimal {
-            background: transparent;
-            border: 1px solid var(--gold-main);
-            padding: 2.5rem;
-            text-align: center;
+            background: rgba(18, 18, 18, 0.8);
+            border-left: 4px solid var(--blue-main);
+            padding: 3rem;
+            text-align: left;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
         
         .service-card-minimal:hover {
-            background: var(--gold-main);
+            background: var(--blue-main);
+            transform: translateX(10px);
+        }
+
+        .service-card-minimal i { 
+            font-size: 2.5rem;
+            color: var(--blue-main);
+            transition: 0.3s;
+        }
+        
+        .service-card-minimal h3 { 
+            margin: 0; font-size: 1.3rem;
+            transition: 0.3s;
         }
         
         .service-card-minimal:hover h3, 
-        .service-card-minimal:hover i { color: var(--black-deep); }
+        .service-card-minimal:hover i { color: var(--text-white); }
 
         /* --- CONTACT --- */
         .contact-section { 
-            background: linear-gradient(45deg, #050505, #151515);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: linear-gradient(135deg, var(--black-deep) 0%, #1a1a1a 100%);
+            border-top: 4px solid var(--blue-main);
             text-align: center; 
+            padding-top: 6rem;
         }
+        
+        .contact-section .section-title { text-align: center; }
+        .contact-section .section-title::after { margin: 20px auto 0; }
         
         .contact-info { 
             display: flex; 
             justify-content: center; 
-            gap: 3rem; 
+            gap: 4rem; 
             flex-wrap: wrap;
-            margin-top: 3rem; 
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(0, 123, 255, 0.05);
+            border-radius: 10px;
         }
         
         .contact-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .contact-item i { 
-            font-size: 1.5rem; 
-            color: var(--gold-main); 
-            margin-bottom: 5px;
+            font-size: 2rem; 
+            color: var(--text-white); 
+            background: var(--blue-main);
+            width: 60px; height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
         }
         
-        .contact-item span { color: var(--text-white); font-weight: 300; }
+        .contact-item span { 
+            color: var(--text-white); 
+            font-weight: 700; 
+            font-size: 1.1rem;
+        }
 
         /* --- FOOTER --- */
         footer { 
-            background: #000; 
-            color: #666; 
+            background: #050505; 
+            color: var(--text-muted); 
             text-align: center; 
-            padding: 3rem 0; 
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            border-top: 1px solid #222;
+            padding: 4rem 0; 
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border-top: 1px solid #1a1a1a;
+            font-weight: 600;
         }
+        footer strong { color: var(--blue-main); }
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 968px) {
-            header h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Pour l'instant caché sur mobile, ou menu burger à prévoir */
-            
-            nav { justify-content: center; } /* Logo centré sur mobile */
-            .logo-container { margin: 0; }
-            
-            .contact-info { flex-direction: column; gap: 1.5rem; }
+            header { padding: 0 5%; padding-top: var(--nav-height); justify-content: center; }
+            header div { text-align: center; }
+            header h1 { font-size: 2.8rem; }
+            header h1 span { font-size: 3.2rem; }
+            header p { border-left: none; border-top: 4px solid var(--blue-main); padding-top: 20px; padding-left: 0; }
+            .nav-links { display: none; } 
+            nav { justify-content: center; border-bottom: none;} 
+            .logo-text-fallback { transform: skew(0deg); }
+            .section-title { text-align: center; font-size: 2.5rem; }
+            .section-title::after { margin: 20px auto 0; }
+            .card { text-align: center; padding: 2.5rem 1.5rem; }
+            .service-card-minimal { flex-direction: column; text-align: center; padding: 2rem; }
+            .service-card-minimal:hover { transform: translateY(-5px); }
+            .contact-info { flex-direction: column; gap: 3rem; padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -333,91 +395,91 @@
         </div>
 
         <div class="nav-links">
-            <a href="#produits">Nos Gammes</a>
-            <a href="#services">L'Expertise</a>
-            <a href="#contact" class="btn-contact">Nous Contacter</a>
+            <a href="#produits">MATÉRIAUX & ÉLEC</a>
+            <a href="#services">SERVICES PRO</a>
+            <a href="#contact" class="btn-contact">CONTACT RAPIDE</a>
         </div>
     </nav>
 
     <header>
         <div>
-            <h1>L'Excellence <br><span>En BTP & Électricité</span></h1>
-            <p>Le partenaire privilégié des professionnels du bâtiment. Fourniture et négoce de matériaux de construction, électriques et sanitaires de haute qualité.</p>
-            <a href="#contact" class="btn-main">OBTENIR UN DEVIS PRO</a>
+            <h1>Partenaire BTP <br><span>& Électricité</span></h1>
+            <p>Fournisseur de confiance pour les professionnels de la construction. Solutions complètes en matériel électrique, sanitaire, carrelage et bardage technique.</p>
+            <a href="#contact" class="btn-main">OUVRIR UN COMPTE PRO</a>
         </div>
     </header>
 
     <section id="produits">
-        <h2 class="section-title">Nos <span>Matériaux</span></h2>
+        <h2 class="section-title">Catalogue <span>Technique</span></h2>
         <div class="grid">
             <div class="card">
                 <i class="fas fa-bolt"></i>
                 <h3>Tableau Électrique</h3>
-                <p>Coffrets, disjoncteurs et armoires électriques pour des installations sécurisées, fiables et conformes aux normes en vigueur.</p>
+                <p>Distribution d'énergie sécurisée. Coffrets divisionnaires, disjoncteurs industriels et armoires de puissance conformes NF C 15-100.</p>
             </div>
             <div class="card">
-                <i class="fas fa-border-all"></i>
-                <h3>Carrelage</h3>
-                <p>Large gamme pour sols et murs, incluant du grès cérame et de la faïence pour des finitions durables et esthétiques.</p>
+                <i class="fas fa-cubes-stacked"></i>
+                <h3>Carrelage Technique</h3>
+                <p>Revêtements sols et murs haute résistance. Grès cérame pleine masse, faïence grand format pour environnements exigeants.</p>
             </div>
             <div class="card">
-                <i class="fas fa-layer-group"></i>
-                <h3>Bardage Décoratif</h3>
-                <p>Solutions de revêtement en bois, composite ou aluminium pour habiller, protéger et moderniser toutes vos façades.</p>
+                <i class="fas fa-building-shield"></i>
+                <h3>Bardage & Façades</h3>
+                <p>Solutions d'isolation et d'habillage extérieur. Bardage composite, aluminium technique et systèmes de fixation pro.</p>
             </div>
             <div class="card">
-                <i class="fas fa-tools"></i>
-                <h3>Pose Sanitaire</h3>
-                <p>Expertise en installation professionnelle, plomberie spécialisée et raccordements de précision pour tous types de chantiers.</p>
+                <i class="fas fa-screwdriver-wrench"></i>
+                <h3>Installation & Raccord</h3>
+                <p>Outillage spécialisé et consommables pour la plomberie et l'électricité. Raccords laiton, PER, multicouche et câblage.</p>
             </div>
             <div class="card">
-                <i class="fas fa-bath"></i>
-                <h3>Sanitaire</h3>
-                <p>Sélection de baignoires, douches, lavabos, WC et robinetterie de grandes marques alliant design, confort et longévité.</p>
+                <i class="fas fa-sink"></i>
+                <h3>Sanitaire Pro</h3>
+                <p>Équipements robustes pour le logement et le tertiaire. Bâti-supports, robinetterie collective, céramique et receveurs.</p>
             </div>
         </div>
     </section>
 
     <section id="services" class="services-section">
-        <h2 class="section-title">Notre <span>Engagement</span></h2>
+        <h2 class="section-title">Engagements <span>Chantier</span></h2>
         <div class="grid">
             <div class="service-card-minimal">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Normes BTP Certifiées</h3>
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Conformité & Normes</h3>
             </div>
             <div class="service-card-minimal">
-                <i class="fas fa-truck-loading"></i>
-                <h3>Livraison Sur Chantier</h3>
+                <i class="fas fa-dolly-flatbed"></i>
+                <h3>Logistique Chantier J+1</h3>
             </div>
             <div class="service-card-minimal">
-                <i class="fas fa-handshake"></i>
-                <h3>Tarifs Professionnels</h3>
+                <i class="fas fa-percent"></i>
+                <h3>Tarifs Négociés B2B</h3>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <h2 class="section-title">Espace <span>Pro</span></h2>
-        <p style="color: var(--text-muted);">Notre équipe d'experts en construction et électricité est à votre écoute.</p>
+        <h2 class="section-title">Contact <span>Professionnel</span></h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Notre équipe technique répond à vos appels d'offres et demandes de chiffrage.</p>
         
         <div class="contact-info">
             <div class="contact-item">
-                <i class="fas fa-phone-alt"></i>
+                <i class="fas fa-phone-volume"></i>
                 <span>06 05 57 42 43</span>
             </div>
             <div class="contact-item">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-at"></i>
                 <span>Contact.2mnegoce@gmail.com</span>
             </div>
             <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-location-dot"></i>
                 <span>Paris, île-de-France</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 2M NEGOCE. TOUS DROITS RÉSERVÉS.</p>
+        <p>&copy; 2026 <strong>2M NEGOCE</strong>. MATÉRIAUX DE CONSTRUCTION & ÉLECTRICITÉ.</p>
     </footer>
 
 </body>
